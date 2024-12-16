@@ -11,6 +11,7 @@ export default {
     extend: {
       backgroundImage: {
         site: "url('./assets/dark-green.jpg')",
+        abstract: "url('./assets/abstract.jpg')"
       }
     },
   },

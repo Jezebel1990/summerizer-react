@@ -20,7 +20,7 @@ const PdfButton: React.FC<PdfButtonProps> = ({ onUpload }) => {
       formData.append('file', file);
 
       // Enviar o PDF para o backend
-      const response = await axios.post('http://localhost:3000/api/process-pdf', formData, {
+      const response = await axios.post('https://summerizer-react.onrender.com/api/process-pdf', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
