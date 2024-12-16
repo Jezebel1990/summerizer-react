@@ -6,24 +6,32 @@ import App from './App';
 import LoginPage from './pages/LoginPage';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-// Funções de sucesso e falha no login
 const onLoginSuccess = (userData: any) => {
   console.log('Login bem-sucedido:', userData);
+
+  const token = userData?.token;
+  if (token) {
+  } else {
+    console.error('Nenhum token retornado no login bem-sucedido.');
+  }
 };
 
-const onLoginFailure = (error: any) => {
-  console.log('Erro no login:', error);
-};
-
-// Acessando a variável de ambiente corretamente no Vite
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''; 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId={clientId}> {/* Usando a variável de ambiente */}
+    <GoogleOAuthProvider clientId={clientId}> 
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage onLoginSuccess={onLoginSuccess} onLoginFailure={onLoginFailure} />} />
+          <Route
+            path="/login"
+            element={
+              <LoginPage
+                onLoginSuccess={onLoginSuccess}
+                onLoginFailure={() => console.error('Falha ao fazer login')}
+              />
+            }
+          />
           <Route path="/app" element={<App />} />
           <Route path="/*" element={<Navigate to="/login" replace />} />
         </Routes>
