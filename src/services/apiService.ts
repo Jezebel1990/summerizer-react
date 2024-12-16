@@ -1,3 +1,5 @@
+
+// Configuração da API do Hugging Face
 const API_URL = 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn';
 
 export const fetchSummary = async (input: string): Promise<string> => {
@@ -24,3 +26,4 @@ export const fetchSummary = async (input: string): Promise<string> => {
     throw error;
   }
 };
+

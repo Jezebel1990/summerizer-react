@@ -5,7 +5,8 @@ interface TextareaFormProps {
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   }
   
-  export function TextareaForm ({ value, setValue, submitting, handleSubmit }: TextareaFormProps) { 
+  export function TextareaForm ({ value, setValue, submitting, handleSubmit }: TextareaFormProps) {
+     
   return (
     <div className='flex flex-col w-full items-center justify-center mt-5 px-4'>
       <textarea
@@ -14,7 +15,10 @@ interface TextareaFormProps {
         className='block w-full sm:w-[460px] md:w-[580px] rounded-md border border-[#2afbc2] 
         bg-slate-900 p-2 text-sm shadow-lg font-medium text-white focus:border-[#3ff1b1] 
         focus:outline-none focus:ring-0'
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        value={value || ''}
       ></textarea>
       {value?.length! > 0 && (
         submitting ? (
@@ -23,7 +27,9 @@ interface TextareaFormProps {
           <button
             className='mt-5 bg-[#1cf4a4] px-4 sm:px-5 py-2 text-sm sm:text-md text-[#0c443c] 
             font-medium rounded-md hover:bg-[#17d496] transition-all'
-            onClick={(e) => handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>)}
+            onClick={(e) => {
+              handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>);
+            }}
           >
             Enviar
           </button>
