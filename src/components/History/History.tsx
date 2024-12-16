@@ -13,9 +13,9 @@ export function History({ data, isCopy, handleCopy, handleDelete }: HistoryProps
       {data && data.length > 0 && (
         <>
           <p className="text-white font-semibold text-lg sm:text-xl text-center">Histórico de Resumos</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 sm:px-20  gap-5 w-full justify-items-center">
+          <div className="grid grid-cols-1 px-5 sm:grid-cols-3 sm:px-20 gap-5 w-full justify-items-center">
             {data.map((d, index) => (
-              <div key={index} className="w-full max-w-xs sm:max-w-xl bg-slate-900 p-3 rounded-md">
+              <div key={index} className="w-full max-w-xxs sm:max-w-xl bg-slate-900 p-3 rounded-md">
                 <p className="text-gray-400 text-sm sm:text-lg">{d}</p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-center justify-end mt-2">
                   <p
