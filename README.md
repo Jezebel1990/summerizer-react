@@ -1,50 +1,56 @@
-# React + TypeScript + Vite
+# GEN Ai - Gerador de Resumos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Mobile](/public/mobile.png)
 
-Currently, two official plugins are available:
+![Desktop](/public/desktop.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Bem-vindo ao GEN Ai, um aplicativo web desenvolvido para gerar resumos de textos de maneira simples, rápida e eficiente. Este projeto utiliza uma integração com inteligência artificial para proporcionar resumos otimizados e relevantes para os seus textos.
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Gerar Resumos:** Insira um texto ou envie um PDF para gerar resumos automaticamente.
+- **Histórico de Resumos:** Visualize, copie ou exclua resumos gerados anteriormente.
+- **Upload de PDF:** Carregue arquivos PDF para extrair o texto e gerar resumos diretamente.
+- **Interface Responsiva:** Layout otimizado para dispositivos móveis e desktops.
+- **Cópia de Texto:** Copie os resumos com um único clique.
 
-- Configure the top-level `parserOptions` property like this:
+## Tecnologias Utilizadas
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Frontend**: React, Tailwind CSS
+- **Backend**: Integração com API de inteligência artificial Hugging Face para processamento de texto
+- **Gerenciamento de Estado**: useState, useEffect
+- **PDF Upload**: Manipulação de arquivos para extração de texto
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Como Executar o Projeto
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Jezebel1990/summerizer-react.git
+   ```
+
+2. Acesse o diretório do projeto:
+  ```bash
+  cd summerizer-react
+  ```
+
+ 3. Instale as dependências:
+  ```bash
+   npm install
+  ```
+
+4. Inicie o servidor de desenvolvimento:
+  ```bash
+   npm run dev
+  ```
+
+ 5. Abra o navegador e acesse:
+  ```bash
+  http://localhost:5173
+  ```
+
+
+## Licença
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
+
+Feito com ♥ por [Jezebel Guedes](https://www.linkedin.com/in/jezebel-guedes/) 👋 Entre em contato!
