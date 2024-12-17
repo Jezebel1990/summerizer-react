@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
+import Avatar from '../assets/avatar.png';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ export default function LoginPage() {
         </h1>
         <div className="w-260 sm:w-320 h-80 mt-8 bg-white/20 shadow-lg rounded-lg flex flex-col items-center justify-center mb-8">
           <img
-            src="https://r2.erweima.ai/imgcompressed/compressed_300167030ea6a6ab25faa7a64e128960.webp"
+            src={Avatar}
             alt="Visitante"
             className="w-36 h-36 rounded-full border-4 border-white my-4"
           />
