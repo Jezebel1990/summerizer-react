@@ -1,33 +1,38 @@
-import React from 'react';
-import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
-import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 
-interface LoginProps {
-  onLoginSuccess: (userData: any) => void;
-  onLoginFailure: () => void;
-}
+export default function LoginPage() {
+  const navigate = useNavigate();
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
-const LoginPage: React.FC<LoginProps> = ({ onLoginSuccess, onLoginFailure }) => {
-  const handleLoginSuccess = (credentialResponse: CredentialResponse) => {
-    if (credentialResponse.credential) {
-      const userData = {
-        token: credentialResponse.credential,
-      };
+  useEffect(() => {
+    const accessTokenRegex = /access_token=([^&]+)/;
+    const isMatch = window.location.href.match(accessTokenRegex);
 
-      // Salva o token nos cookies com validade de 7 dias
-      Cookies.set('auth_token', userData.token, { expires: 7 });
-      
-      // Executa o callback de sucesso
-      onLoginSuccess(userData);
-    } else {
-      console.error('Credencial não encontrada.');
-      onLoginFailure();
+    if (isMatch) {
+      const accessToken = isMatch[1];
+      Cookies.set("access_token", accessToken);
+      setIsLoggedin(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLoggedin) {
+      navigate("/");
+    }
+  }, [isLoggedin, navigate]);
+
+  const handleSuccess = (response: CredentialResponse) => {
+    if (response.credential) {
+      Cookies.set("access_token", response.credential);
+      setIsLoggedin(true);
     }
   };
 
-  const handleLoginFailure = () => {
-    console.error('Erro no login.');
-    onLoginFailure();
+  const handleError = () => {
+    console.error("Erro ao fazer login com o Google.");
   };
 
   return (
@@ -49,17 +54,17 @@ const LoginPage: React.FC<LoginProps> = ({ onLoginSuccess, onLoginFailure }) => 
           </h2>
         </div>
         <GoogleLogin
-          onSuccess={handleLoginSuccess}
-          onError={handleLoginFailure}
+          onSuccess={handleSuccess}
+          onError={handleError}
           useOneTap
-          theme="filled_black" // Define o tema do botão
-          width="420" // Largura do botão
-          shape="rectangular" // Forma do botão
-          size="large" // Tamanho do botão
+          theme="filled_black"
+          shape="rectangular"
+          size="large"
         />
       </div>
     </div>
   );
-};
+}
 
-export default LoginPage;
+
+
