@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Cookies from "js-cookie"; // Importa para ler o token
+import Cookies from "js-cookie"; 
 import App from "./App";
 import LoginPage from "./pages/LoginPage";
 import "./index.css";
