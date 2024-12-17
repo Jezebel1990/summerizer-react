@@ -8,26 +8,28 @@ export default function LoginPage() {
   const [isLoggedin, setIsLoggedin] = useState(false);
 
   useEffect(() => {
-    const accessTokenRegex = /access_token=([^&]+)/;
-    const isMatch = window.location.href.match(accessTokenRegex);
+    const token = Cookies.get("access_token");
 
-    if (isMatch) {
-      const accessToken = isMatch[1];
-      Cookies.set("access_token", accessToken);
+    if (token) {
       setIsLoggedin(true);
+    } else {
     }
   }, []);
 
   useEffect(() => {
+    console.log("Verificando estado 'isLoggedin':", isLoggedin);
     if (isLoggedin) {
-      navigate("/");
+      navigate("/"); 
     }
   }, [isLoggedin, navigate]);
 
   const handleSuccess = (response: CredentialResponse) => {
+
     if (response.credential) {
       Cookies.set("access_token", response.credential);
-      setIsLoggedin(true);
+      setIsLoggedin(true); 
+    } else {
+      console.warn("Nenhum token encontrado na resposta.");
     }
   };
 
@@ -59,12 +61,11 @@ export default function LoginPage() {
           useOneTap
           theme="filled_black"
           shape="rectangular"
-          size="large"
+          width="420"
         />
       </div>
-    </div>
+      </div>
   );
 }
-
 
 
