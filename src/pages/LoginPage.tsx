@@ -1,33 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
-import Avatar from '../assets/avatar.png';
+import Avatar from "../assets/avatar.png";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [isLoggedin, setIsLoggedin] = useState(false);
 
   useEffect(() => {
     const token = Cookies.get("access_token");
-
     if (token) {
-      setIsLoggedin(true);
-    } else {
+      navigate("/");
     }
-  }, []);
-
-  useEffect(() => {
-    if (isLoggedin) {
-      navigate("/"); 
-    }
-  }, [isLoggedin, navigate]);
+  }, [navigate]);
 
   const handleSuccess = (response: CredentialResponse) => {
-
     if (response.credential) {
       Cookies.set("access_token", response.credential);
-      setIsLoggedin(true); 
+      navigate("/");
     } else {
       console.warn("Nenhum token encontrado na resposta.");
     }
@@ -45,6 +35,7 @@ export default function LoginPage() {
           <span className="font-semibold text-white"> GEN A</span>
           <span className="text-[#2afbc2] font-semibold">i</span>
         </h1>
+
         <div className="w-260 sm:w-320 h-80 mt-8 bg-white/20 shadow-lg rounded-lg flex flex-col items-center justify-center mb-8">
           <img
             src={Avatar}
@@ -55,18 +46,19 @@ export default function LoginPage() {
             Olá, <span className="text-[#3ff1b1] font-semibold">visitante</span>!
           </h2>
         </div>
+
         <div className="flex justify-center">
-        <GoogleLogin
-          onSuccess={handleSuccess}
-          onError={handleError}
-          useOneTap
-          theme="filled_black"
-          shape="rectangular"
-          width="420"
-        />
+          <GoogleLogin
+            onSuccess={handleSuccess}
+            onError={handleError}
+            useOneTap
+            theme="filled_black"
+            shape="rectangular"
+            width="420"
+          />
+        </div>
       </div>
-      </div>
-      </div>
+    </div>
   );
 }
 
